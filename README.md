@@ -1,5 +1,7 @@
 # onion-pot-generator
 
+![](docs/box_top_render.png)
+
 The generator of the pots for the cultivation of onion seedlings by hydroponics. The pot models were made in [OpenSCAD](https://openscad.org/).
 
 ## License
