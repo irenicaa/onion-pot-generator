@@ -17,8 +17,8 @@ module box(width_onion, onion_size, step_between_onions) {
     difference() {
         cube([width, length, height], center=true);
 
-        translate([0, 0, 2]) {
-            cube([width - 0.8, length - 0.8, height], center=true);
+        translate([0, 0, 1.2]) {
+            cube([width - 1, length - 1, height], center=true);
         }
 
         translate([0, width / 2, height / 2 - 5]) {
