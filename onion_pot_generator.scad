@@ -9,7 +9,7 @@ sphere_sides = 30;
 
 mode = "onion_cup"; // box, box_top, onion_cup
 
-module box(box_width_in_onions, onion_size, step_between_onions) {
+module box() {
     width = box_width_in_onions * (onion_size + step_between_onions) + 5;
     length = box_length_in_onions * (onion_size + step_between_onions) + 5;
     height = onion_size / 2 + 5;
@@ -29,7 +29,7 @@ module box(box_width_in_onions, onion_size, step_between_onions) {
     }
 };
 
-module box_top(box_width_in_onions, onion_size, step_between_onions) {
+module box_top() {
     width = box_width_in_onions * (onion_size + step_between_onions) + 7;
     length = box_length_in_onions * (onion_size + step_between_onions) + 7;
     space = onion_size + step_between_onions;
@@ -91,10 +91,10 @@ module onion_cup_hole(x, y, z, diameter) {
 };
 
 if (mode == "box") {
-    box(box_width_in_onions, onion_size, step_between_onions);
+    box();
 }
 if (mode == "box_top") {
-    box_top(box_width_in_onions, onion_size, step_between_onions);
+    box_top();
 }
 if (mode == "onion_cup") {
     onion_cup();
