@@ -1,18 +1,18 @@
-width_onion = 2;
-length_onion = 2;
+box_width_in_onions = 2;
+box_length_in_onions = 2;
 onion_size = 55;
 step_between_onions = 5;
 root_diameter = 15;
 green_diameter = 20;
-sphere_sides = 30;
-height = onion_size / 2 + 5;
 compressor_diameter = 6;
+sphere_sides = 30;
 
 mode = "onion_cup"; // box, box_top, onion_cup
 
-module box(width_onion, onion_size, step_between_onions) {
-    width = width_onion * (onion_size + step_between_onions) + 5;
-    length = length_onion * (onion_size + step_between_onions) + 5;
+module box(box_width_in_onions, onion_size, step_between_onions) {
+    width = box_width_in_onions * (onion_size + step_between_onions) + 5;
+    length = box_length_in_onions * (onion_size + step_between_onions) + 5;
+    height = onion_size / 2 + 5;
 
     difference() {
         cube([width, length, height], center=true);
@@ -29,9 +29,9 @@ module box(width_onion, onion_size, step_between_onions) {
     }
 };
 
-module box_top(width_onion, onion_size, step_between_onions) {
-    width = width_onion * (onion_size + step_between_onions) + 7;
-    length = length_onion * (onion_size + step_between_onions) + 7;
+module box_top(box_width_in_onions, onion_size, step_between_onions) {
+    width = box_width_in_onions * (onion_size + step_between_onions) + 7;
+    length = box_length_in_onions * (onion_size + step_between_onions) + 7;
     space = onion_size + step_between_onions;
     step = onion_size / 2 + step_between_onions;
 
@@ -39,8 +39,8 @@ module box_top(width_onion, onion_size, step_between_onions) {
         union() {
             cube([width, length, 1.5], center=false);
 
-            for (i = [0 : width_onion-1]) {
-                for (j = [0 : length_onion-1]) {
+            for (i = [0 : box_width_in_onions-1]) {
+                for (j = [0 : box_length_in_onions-1]) {
                     translate([space * i + step, space * j + step, 0]) {
                         difference() {
                             sphere($fn=sphere_sides, d=onion_size);
@@ -54,8 +54,8 @@ module box_top(width_onion, onion_size, step_between_onions) {
             }
         }
 
-        for (i = [0 : width_onion-1]) {
-            for (j = [0 : length_onion-1]) {
+        for (i = [0 : box_width_in_onions-1]) {
+            for (j = [0 : box_length_in_onions-1]) {
                 onion_cup_hole(space * i + step, space * j + step, -onion_size / 2, root_diameter);
             }
         }
@@ -91,10 +91,10 @@ module onion_cup_hole(x, y, z, diameter) {
 };
 
 if (mode == "box") {
-    box(width_onion, onion_size, step_between_onions);
+    box(box_width_in_onions, onion_size, step_between_onions);
 }
 if (mode == "box_top") {
-    box_top(width_onion, onion_size, step_between_onions);
+    box_top(box_width_in_onions, onion_size, step_between_onions);
 }
 if (mode == "onion_cup") {
     onion_cup();
